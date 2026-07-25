@@ -1,4 +1,16 @@
-.Rproj.user
+# R specific
 .Rhistory
 .RData
-.Ruserdata
+.Rproj.user/
+
+# Data (keep private)
+data/
+
+
+
+# renv library (large, not needed)
+renv/
+
+# OS files
+.DS_Store
+Thumbs.db

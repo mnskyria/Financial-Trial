@@ -7,7 +7,7 @@ YIELD_INDICATORS_CH3 <- c("totalYield", "bean", "carrot")
 
 MARGIN_INDICATORS <- c("margins_whole", "margins_direct")
 
-ACREAGE_INDICATORS <- c("acres_wholesale", "acres_direct")
+ACREAGE_INDICATORS <- c("acres_whole", "acres_direct")
 
 YLABS_CH3 <- c(
   totalYield      = "Total Yield (g)",
@@ -168,64 +168,3 @@ run_lm_plots_ch3(
   year_labels  = c("Year 1", "Year 2", "Year 3")
 )
 
-# ---------- 6. RUN ALL MODEL GROUPS ---------------------------------------
-message("Running yield models...")
-res_yield <- run_models(
-  vars         = c("totalYield", "bean", "carrot"),
-  data         = recode_dat(dat),
-  formula_list = ch3_formulas,
-  year_levels  = c("Year 1", "Year 2", "Year 3")
-)
-
-message("Running kale model...")
-res_kale <- run_models(
-  vars         = "kale",
-  data         = dat_kale,
-  formula_list = ch3_formulas,
-  year_levels  = c("Year 2", "Year 3")
-)
-
-message("Running margin models...")
-res_margins <- run_models(
-  vars         = c("margins_whole", "margins_direct"),
-  data         = recode_dat(dat),
-  formula_list = ch3_formulas,
-  year_levels  = c("Year 1", "Year 2", "Year 3")
-)
-
-message("Running acreage models...")
-res_acres <- run_models(
-  vars         = c("acres_whole", "acres_direct"),
-  data         = recode_dat(dat),
-  formula_list = ch3_formulas,
-  year_levels  = c("Year 1", "Year 2", "Year 3")
-)
-
-# ---------- 7. COMBINE MAIN RESULTS (excluding kale) ----------------------
-all_summary <- bind_rows(res_yield$summary, res_margins$summary, res_acres$summary)
-all_coef    <- bind_rows(res_yield$coef,    res_margins$coef,    res_acres$coef)
-all_pairs   <- bind_rows(res_yield$pairs,   res_margins$pairs,   res_acres$pairs)
-all_log     <- bind_rows(res_yield$log,     res_margins$log,     res_acres$log)
-
-message("Rows — Summary: ", nrow(all_summary),
-        " | Coef: ",  nrow(all_coef),
-        " | Pairs: ", nrow(all_pairs))
-
-# ---------- 8. WRITE WORKBOOK ---------------------------------------------
-wb <- createWorkbook()
-
-# Main model sheets
-wb_add_tbl(wb, "Model_Summary", all_summary)
-wb_add_tbl(wb, "Coefficients",  all_coef)
-wb_add_tbl(wb, "Pairs",         all_pairs)
-wb_add_tbl(wb, "Run_Log",       all_log)
-
-# Kale separate sheets
-wb_add_tbl(wb, "Kale_Summary", res_kale$summary)
-wb_add_tbl(wb, "Kale_Coef",    res_kale$coef)
-wb_add_tbl(wb, "Kale_Pairs",   res_kale$pairs)
-wb_add_tbl(wb, "Kale_Log",     res_kale$log)
-
-outfile <- file.path(CONFIG$model_dir, "Financial_LM_All_Models.xlsx")
-saveWorkbook(wb, outfile, overwrite = TRUE)
-message("✓ Saved: ", normalizePath(outfile, winslash = "/"))

@@ -2,13 +2,13 @@
 suppressPackageStartupMessages({
   library(tidyverse)
   library(readxl)
-  library(lmerTest)
   library(emmeans)
   library(multcompView)
   library(openxlsx)
   library(scales)
   library(utils)
   library(janitor)
+  library(patchwork)
 })
 
 CONFIG <- list(
