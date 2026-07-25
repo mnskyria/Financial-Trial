@@ -146,15 +146,15 @@
 7.  **People involved with sample collection, processing, analysis and/or submission:**
 
 - **2022:** Matthew Kyriakides
-- **2023:** Matthew Kyriakides, field assistant 1
-- **2024:** Matthew Kyriakides, field assistants 2 & 3
+- **2023:** Matthew Kyriakides, P
+- **2024:** Matthew Kyriakides, T, E
 
 |                                               |
 |-----------------------------------------------|
 | DATA-SPECIFIC INFORMATION FOR: financial data |
 
 | **Type of Variable** | **Type of Data** | R Label | **n** | **Absent Data** |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | Treatment | Categorical, ordinal (5 levels: 1-5) | treatment | 60 | None absent |
 | Year | Categorical, discrete (4 levels: 4 times) | year | 60 | None absent |
 | **Response Variable: Yield** |  |  |  |  |
