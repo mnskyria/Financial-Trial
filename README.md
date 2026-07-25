@@ -2,11 +2,11 @@
 
 # Quick Start
 
-1.   Place the Excel data file in `data/` using the expected filename and sheet names.
+1.  Place the Excel data file in `data/` using the expected filename and sheet names.
 
 2.  Open `Chapter 2 - Soil-Yields.Rproj` in RStudio
 
-3.   Run `scripts/run_all.R` - outputs (models, figures, summaries) will appear in `outputs/` Note: the raw data file is not included in this repository. Contact the author for access.
+3.  Run `scripts/run_all.R` - outputs (models, figures, summaries) will appear in `outputs/` Note: the raw data file is not included in this repository. Contact the author for access.
 
 ------------------------------------------------------------------------
 
@@ -154,7 +154,7 @@
 | DATA-SPECIFIC INFORMATION FOR: financial data |
 
 | **Type of Variable** | **Type of Data** | R Label | **n** | **Absent Data** |
-|--------------|------------------|--------------|--------------|--------------|
+|----|----|----|----|----|
 | Treatment | Categorical, ordinal (5 levels: 1-5) | treatment | 60 | None absent |
 | Year | Categorical, discrete (4 levels: 4 times) | year | 60 | None absent |
 | **Response Variable: Yield** |  |  |  |  |
